@@ -10,22 +10,21 @@ export class App extends Component {
 
   addContact = newContact => {
     console.log(newContact);
+    const newUser = {
+      id: nanoid(),
+      ...newContact,
+    };
     this.setState(prevState => ({
-      contacts: [
-        ...prevState.contacts,
-        {
-          id: nanoid(),
-          ...newContact,
-        },
-      ],
+      contacts: [...prevState.contacts, newUser],
     }));
   };
 
   render() {
+    const { contacts } = this.state;
     return (
       <div>
         <Phonebook onAdd={this.addContact} />
-        <Contacts />
+        <Contacts contactsList={contacts} />
       </div>
     );
   }
