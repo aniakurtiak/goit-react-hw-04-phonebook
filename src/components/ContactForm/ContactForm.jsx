@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { StyledForm, Label, StyledField, ErrorMsg } from './Phonebook.styled';
+import { StyledForm, Label, StyledField, ErrorMsg } from './ContactForm.styled';
 import * as Yup from 'yup';
 
 const PhonebookSchema = Yup.object().shape({
@@ -13,7 +13,7 @@ const PhonebookSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const Phonebook = ({ onAdd }) => {
+export const ContactForm = ({ onAdd, onForbidd }) => {
   return (
     <div>
       <h2>Phonebook</h2>
@@ -25,6 +25,7 @@ export const Phonebook = ({ onAdd }) => {
         validationSchema={PhonebookSchema}
         onSubmit={(values, actions) => {
           onAdd(values);
+          onForbidd(values);
           actions.resetForm();
         }}
       >
