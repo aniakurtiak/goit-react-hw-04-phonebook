@@ -9,7 +9,6 @@ export class App extends Component {
   };
 
   addContact = newContact => {
-    console.log(newContact);
     const newUser = {
       id: nanoid(),
       ...newContact,
@@ -24,7 +23,7 @@ export class App extends Component {
     return (
       <div>
         <Phonebook onAdd={this.addContact} />
-        <Contacts contactsList={contacts} />
+        <Contacts contacts={contacts} />
       </div>
     );
   }

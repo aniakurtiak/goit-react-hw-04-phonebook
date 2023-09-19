@@ -1,11 +1,13 @@
-export const Contacts = ({ contactsList }) => {
+export const Contacts = ({ contacts }) => {
   return (
     <div>
       <h2>Contacts</h2>
       <ul>
-        {contactsList.map(contact => (
+        {contacts.map(contact => (
           <li key={contact.id}>
-            <p>{contactsList.name}</p>
+            <p>
+              {contact.name}: {contact.number}
+            </p>
           </li>
         ))}
       </ul>
