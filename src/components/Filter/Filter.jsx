@@ -1,11 +1,11 @@
-import { FilterWrap } from './Filter.styled';
+import { FilterWrap, Input } from './Filter.styled';
 
 export const Filter = ({ filter, onChangeContact }) => {
   return (
     <FilterWrap>
       <label>
         Find contacts by name
-        <input
+        <Input
           type="text"
           value={filter}
           onChange={evt => {

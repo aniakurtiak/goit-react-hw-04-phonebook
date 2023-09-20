@@ -1,8 +1,10 @@
+import { ItemsWrap, Button } from './ContactItem.styled';
+
 export const ContactItem = ({ item: { name, number, id }, onDelete }) => {
   return (
-    <div>
+    <ItemsWrap>
       {name}: {number}
-      <button onClick={() => onDelete(id)}>Delete</button>
-    </div>
+      <Button onClick={() => onDelete(id)}>Delete</Button>
+    </ItemsWrap>
   );
 };
