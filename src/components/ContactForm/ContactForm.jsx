@@ -13,7 +13,7 @@ const PhonebookSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onAdd, onForbidd }) => {
+export const ContactForm = ({ onAdd }) => {
   return (
     <div>
       <h2>Phonebook</h2>
@@ -25,7 +25,6 @@ export const ContactForm = ({ onAdd, onForbidd }) => {
         validationSchema={PhonebookSchema}
         onSubmit={(values, actions) => {
           onAdd(values);
-          onForbidd(values);
           actions.resetForm();
         }}
       >

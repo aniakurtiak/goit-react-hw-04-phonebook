@@ -16,14 +16,17 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = newContact => {
-    const newUser = {
-      id: nanoid(),
-      ...newContact,
-    };
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newUser],
-    }));
+  addContact = ({ name, number }) => {
+    this.setState(prevState => {
+      if (prevState.contacts.find(contact => contact.name === name)) {
+        Notify.failure(`${name} is alredy in contacts`);
+        return;
+      }
+      const newUser = { id: nanoid(), name, number };
+      return {
+        contacts: [...prevState.contacts, newUser],
+      };
+    });
   };
 
   findContact = contactName => {
@@ -32,17 +35,10 @@ export class App extends Component {
     });
   };
 
-  forbidaddContact = ({ name, number }) => {
-    this.setState(prevState => {
-      if (prevState.contacts.find(contact => contact.name === name)) {
-        Notify.failure(`${name} is alredy in contacts`);
-        return;
-      }
-      const newContact = { name, number, id: nanoid() };
-      return {
-        contacts: [...prevState.contacts, newContact],
-      };
-    });
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
 
   render() {
@@ -53,9 +49,12 @@ export class App extends Component {
 
     return (
       <div>
-        <ContactForm onAdd={this.addContact} onForbidd={this.forbidaddContact} />
+        <ContactForm
+          onAdd={this.addContact}
+          onForbidd={this.forbidaddContact}
+        />
         <Filter filter={this.state.filter} onChangeContact={this.findContact} />
-        <ContactList contacts={visibleItems} />
+        <ContactList contacts={visibleItems} onDelete={this.deleteContact} />
       </div>
     );
   }
