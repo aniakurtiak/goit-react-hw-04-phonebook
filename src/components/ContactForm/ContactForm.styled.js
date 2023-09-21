@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Field, Form, ErrorMessage } from "formik";
 
 export const StyledForm = styled(Form)`
-max-width: 400px;
+max-width: 500px;
 padding: 8px;
 border: 2px solid black;
 display: flex;
